@@ -52,3 +52,9 @@ Ansible (CD Tool)
    ▼
 Docker (Runtime)
    └── Hosts Flask Web App on port 5000
+
+---
+
+💬 Demo Note
+This project simulates a full CI/CD workflow using Jenkins, Docker, and Ansible — all running on a local machine.
+In a real-world setup, Jenkins would run on a master node and Ansible would deploy to multiple remote servers.
