@@ -1,11 +1,7 @@
 ---
 - name: Deploy Flask app via Docker
   hosts: localhost
-  become: yes
-  become_method: sudo
-  become_user: root
-  vars:
-    ansible_become_password: kali
+ 
   
 
   tasks:
