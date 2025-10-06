@@ -2,20 +2,12 @@
 - name: Deploy Flask app via Docker
   hosts: localhost
   become: yes
-  become_method: sudo
-  become_user: root
-  vars:
-    ansible_become_password: kali
-    
- 
-  
 
   tasks:
     - name: Ensure Docker is installed
       apt:
         name: docker.io
         state: present
-      become: yes
 
     - name: Start Docker service
       service:
@@ -23,7 +15,10 @@
         state: started
         enabled: yes
 
-    - name: Run Flask container
+    - name: Remove existing Flask container (if any)
+      shell: |
+        docker rm -f flask-demo || true
+
+    - name: Run new Flask container
       shell: |
         docker run -d -p 5000:5000 --name flask-demo python:3.9-slim bash -c "pip install flask && python -m flask run --host=0.0.0.0"
-                                 
