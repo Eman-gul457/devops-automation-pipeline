@@ -1,0 +1,60 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+.venv/
+*.log
+
+# -----------------------------
+# Ansible
+# -----------------------------
+*.retry
+*.vault
+inventory.ini
+*.secret
+*.pem
+*.key
+
+# -----------------------------
+# Jenkins
+# -----------------------------
+workspace/
+builds/
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# -----------------------------
+# Docker
+# -----------------------------
+*.tar
+*.pid
+*.sock
+*.img
+.docker/
+docker-compose.override.yml
+
+# -----------------------------
+# OS / Editor files
+# -----------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.~lock*
+*.zip
+*.tar.gz
+
+# -----------------------------
+# Other
+# -----------------------------
+*.crt
+*.csr
+*.old
