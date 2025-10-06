@@ -1,6 +1,6 @@
  cat playbook.yml
 - name: Deploy Flask app via Docker
-  hosts: webserver
+  hosts: localhost
   connection: local
   become: yes
 
