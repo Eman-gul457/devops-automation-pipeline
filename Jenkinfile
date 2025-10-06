@@ -1,42 +1,23 @@
 pipeline {
-  agent any
+    agent any
 
-  environment {
-    IMAGE_NAME = "flask-demo:${env.BUILD_ID}"
-  }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Eman-gul457/devops-automation-pipeline.git'
+            }
+        }
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t flask-demo .'
+            }
+        }
+
+        stage('Run Ansible Playbook') {
+            steps {
+                sh 'ansible-playbook ansible/playbook.yml --connection=local'
+            }
+        }
     }
-
-    stage('Build Docker Image') {
-      steps {
-        echo "Building Docker image: ${env.IMAGE_NAME}"
-        sh "docker build -t ${env.IMAGE_NAME} ."
-      }
-    }
-
-    stage('Deploy with Ansible') {
-      steps {
-        echo "Running Ansible playbook to deploy container"
-        // run the playbook from repo/ansible; uses inventory.ini there
-        sh "ansible-playbook ansible/playbook.yml -i ansible/inventory.ini"
-      }
-    }
-
-    stage('Verify') {
-      steps {
-        echo "Verify app is running (curl output shown)"
-        sh "curl -sS http://localhost:5000 || true"
-      }
-    }
-  }
-
-  post {
-    success { echo "Pipeline completed successfully" }
-    failure { echo "Pipeline failed — check console output" }
-  }
 }
