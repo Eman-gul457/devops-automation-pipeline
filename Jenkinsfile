@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ansible-playbook ansible/playbook.yml --connection=local --extra-vars "ansible-become-pass=kali"'
+                sh 'ansible-playbook ansible/playbook.yml --connection=local'
             }
         }
     }
