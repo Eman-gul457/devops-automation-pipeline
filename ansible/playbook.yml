@@ -1,7 +1,7 @@
 ---
 - name: Deploy Flask app via Docker
   hosts: localhost
-   become: yes
+  become: yes
   become_method: sudo
   become_user: root
   vars:
