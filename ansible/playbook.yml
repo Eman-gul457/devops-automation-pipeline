@@ -1,8 +1,7 @@
 ---
 - name: Deploy Flask app via Docker
   hosts: localhost
-  connection: local
-  become: yes
+  
 
   tasks:
     - name: Ensure Docker is installed
