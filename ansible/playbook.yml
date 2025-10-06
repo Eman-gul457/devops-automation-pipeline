@@ -1,0 +1,23 @@
+ cat playbook.yml
+- name: Deploy Flask app via Docker
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+      become: yes
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Run Flask container
+      shell: |
+        docker run -d -p 5000:5000 --name flask-demo python:3.9-slim bash -c "pip install flask && python -m flask run --host=0.0.0.0"
+                                 
