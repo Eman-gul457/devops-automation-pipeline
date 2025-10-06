@@ -1,4 +1,4 @@
- cat playbook.yml
+---
 - name: Deploy Flask app via Docker
   hosts: localhost
   connection: local
